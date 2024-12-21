@@ -4,4 +4,4 @@ This repository contains code for the work "Robust targeted exploration for syst
 # Simulations
 
 1. Install [CVX](https://cvxr.com/cvx/) for MATLAB
-2. The [main script](Targeted_Exploration_Non-stochastic_Disturbances/main_nonstoch_guarantees.m) contains links to all the dependent scripts.
+2. The [main script](main_nonstoch_guarantees.m) contains links to all the dependent scripts.
