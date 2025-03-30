@@ -1,5 +1,5 @@
 # Robust targeted exploration for systems with non-stochastic disturbances
-This repository contains code for the work "Robust targeted exploration for systems with non-stochastic disturbances". The details of this work can be found [https://arxiv.org/abs/2412.20426](arxiv link).
+This repository contains code for the work "Robust targeted exploration for systems with non-stochastic disturbances". The details of this work can be found [https://arxiv.org/abs/2412.20426](link).
 
 # Simulations
 
