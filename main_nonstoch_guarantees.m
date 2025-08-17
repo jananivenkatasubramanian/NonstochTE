@@ -52,6 +52,8 @@ run transfermatrices.m
 % Scenario bounds gamma_x, gamma_phi, Gamma_x, Gamma_phi, l1, l2
 run thetasamples.m
 
+disp(eig(Gamma_phi-Vphi0*Vphi0'));
+
 
 %% -----------------------------------------------------------------------
 % exploration time
@@ -112,5 +114,6 @@ run compareexp.m
 % simpars=[]; % set to interested values
 % temp=[D0(1,1),D_des_tilde(1,1),gamma_w,T,err_ns,werr_ns,G_ns,normGP,nDdesinv];
 % simpars=[simpars;temp];
+
 
 
