@@ -14,12 +14,26 @@ L=size(freqs,2);
 % B=[0;0.49];
 
 % 3x3
-A=[0.49 0.49 0;0 0.49 0.49;0 0 0.49];
-B=[0; 0; 0.49];
+% A=[0.49 0.49 0;0 0.49 0.49;0 0 0.49];
+% B=[0; 0; 0.49];
 
 % 4x4
 % A=[0.49 0.49 0 0;0 0.49 0.49 0; 0 0 0.49 0.49;0 0 0 0.49];
 % B=[0; 0; 0; 0.49];
+
+% Chain of 2 mass-spring-dampers: 4x4
+Ts=0.1; % sampling period
+m1=20; % mass-1
+m2=10; % mass-2
+k1=3; % spring constant 1
+k2=1; % spring constant 2
+d1=0.01; % damping coefficient 1
+d2=0.03; % damping coefficient 2
+A=[1,Ts,0,0;...
+  (-Ts*(k1+k2)/m2),(1-(Ts*(d1+d2)/m1)), (Ts*k2/m1), (Ts*d2/m1);...
+  0,0,1,Ts;...
+  (Ts*k1/m2), (Ts*d2/m2), (-Ts*k2/m2), (1-(Ts*d2/m2)) ];
+B=[0;0;0;(Ts/m2)];
 
 nx=size(A,2);
 nu=size(B,2);
@@ -35,3 +49,4 @@ for i=1:T
 end
 
 eps=0.5;
+
