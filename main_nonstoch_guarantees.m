@@ -1,7 +1,7 @@
  %% Main --- Non-stoch targeted exploration
 clear all;
 clc;
-simpars=[];
+sims=[];
 %%
 % Exploration time
 T=100;
@@ -11,13 +11,13 @@ run initialize_nonstoch_guarantees.m
 
 % Set initial bound on estimate D0 - with structure so that  bounds on \hat{A}_0 
 % and \hat{B}_0 can be computed 
-D0tilde=1e4*eye(nphi);
+D0tilde=1e3*eye(nphi);
 D0=kron(D0tilde,eye(nx));
 D0inv=inv(D0);
 
 % initial estimate \hat{A}_0 and \hat{B}_0
-theta0=thetatr + 4e-4;
-% theta0=thetatr + (thetatr/(norm(thetatr)*sqrt(norm(D0))));
+% theta0=thetatr + 4e-4;
+theta0=thetatr + (thetatr/(norm(thetatr)*sqrt(norm(D0))));
 % disp(abs(eig(A)));
 
 theta0_check=(theta0-thetatr)'*D0*(theta0-thetatr);
@@ -30,7 +30,7 @@ end
 
 p0=reshape(theta0,[nx,nphi]);
 A0=p0(:,1:nx);
-B0=p0(:,nx+1);
+B0=p0(:,nx+1:nx+nu);
 % disp(abs(eig(A0)));
 
 % Generate \theta samples to derive scenario bounds
@@ -45,7 +45,7 @@ while n<Ns
     if t2<=1
         p1=reshape(t1,[nx,nphi]);
         A1=p1(:,1:nx);
-        B1=p1(:,nx+1);
+        B1=p1(:,nx+1:nx+nu);
         if (abs(eig(A1))<1)
             thetas=[thetas,t1];
             paramt=reshape(t1,[nx,nphi]);
@@ -122,7 +122,7 @@ tic;
 for i=1:1
     disp(i);
     run exploration_scaleddown.m
-    if(abs((gtemp-gammae)/gtemp))<1e-2
+    if(abs((gtemp-gammae)/gtemp))<1e-1
         break;
     end
     gtemp=gammae;
@@ -132,7 +132,7 @@ toc;
 %%
 
 temp=[gamma_w,gammae^2];
-simpars=[simpars;temp];
+sims=[sims;temp];
 
 %%
 % Compute simulation parameters after exploration
